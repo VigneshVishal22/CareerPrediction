@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enter Your Skills</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>🎯 Enter Your Skills & Personality Traits</h2>
+        <p>Rate your proficiency (0-10) for each skill:</p>
+        <form action="/predict" method="POST">
+            {% for feature in features %}
+            <div class="input-group">
+                <label for="{{ feature }}">{{ feature }} (0-10)</label>
+                <input type="number" id="{{ feature }}" name="{{ feature }}" min="0" max="10" step="1" required>
+                <p class="description">{{ descriptions[feature] }}</p>
+            </div>
+            {% endfor %}
+            <button type="submit" class="btn">Get My Career Prediction</button>
+        </form>
+    </div>
+</body>
+</html>
